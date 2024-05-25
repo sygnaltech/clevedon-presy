@@ -10,7 +10,7 @@ import { Site } from "./site";
 
 // Global vars
 const SITE_NAME = 'Site';
-const VERSION = 'v0.1.6';
+const VERSION = 'v0.1.0';
 
 
 
