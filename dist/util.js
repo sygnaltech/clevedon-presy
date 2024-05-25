@@ -7,7 +7,6 @@
   function loadScript(url) {
     const script = document.createElement("script");
     script.src = url;
-    console.log("loading script", url);
     document.body.appendChild(script);
   }
   function loadCSS(url) {
