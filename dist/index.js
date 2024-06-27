@@ -100,7 +100,7 @@
 
   // src/index.ts
   var SITE_NAME = "Site";
-  var VERSION = "v0.1.0";
+  var VERSION = "v0.1.1";
   window[SITE_NAME] = window[SITE_NAME] || {};
   var SiteData = window[SITE_NAME];
   var init = () => {
