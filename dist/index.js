@@ -10,7 +10,6 @@
     setup() {
     }
     exec() {
-      console.log("Home.");
     }
   };
 
@@ -76,27 +75,11 @@
       loadEngineCSS("site.css");
     }
     exec() {
-      console.log("Site.");
       const cmsSelect = new Sa5CmsSelect();
       cmsSelect.initAll();
-      const churchSelect = document.getElementById("church");
-      if (churchSelect) {
-        churchSelect.addEventListener("change", () => {
-          const selectedChurch = churchSelect.value;
-          const churchSelectors = document.querySelectorAll("[site-church-selector]");
-          churchSelectors.forEach((selectElement) => {
-            const matchingOption = Array.from(selectElement.options).find((option) => option.value === selectedChurch);
-            if (matchingOption) {
-              selectElement.value = matchingOption.value;
-              const inputEvent = new Event("input", { bubbles: true });
-              selectElement.dispatchEvent(inputEvent);
-            }
-          });
-          console.log(`Selected church: ${selectedChurch}`);
-        });
-      } else {
-        console.error('Select element with ID "church" not found.');
-      }
+      const churchSelectors = document.querySelectorAll("[site-church-selector]");
+      churchSelectors.forEach((selectElement) => {
+      });
     }
   };
 

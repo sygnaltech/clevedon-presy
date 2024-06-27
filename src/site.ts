@@ -23,17 +23,17 @@ export class Site implements IRouteHandler {
   }
 
   exec() {
-    
-    console.log("Site."); 
+
+//    console.log("Site."); 
 
     const cmsSelect = new Sa5CmsSelect();
     cmsSelect.initAll(); 
 
-    const churchSelect = document.getElementById('church') as HTMLSelectElement;
+    // const churchSelect = document.getElementById('church') as HTMLSelectElement;
   
-    if (churchSelect) {
-      churchSelect.addEventListener('change', () => {
-        const selectedChurch = churchSelect.value;
+    // if (churchSelect) {
+    //   churchSelect.addEventListener('change', () => {
+    //     const selectedChurch = churchSelect.value;
 
 
 
@@ -43,41 +43,31 @@ export class Site implements IRouteHandler {
       // Update each found select element to match the selected value
       churchSelectors.forEach(selectElement => {
         // Find the option with the matching value
-        const matchingOption = Array.from(selectElement.options).find(option => option.value === selectedChurch);
+        // const matchingOption = Array.from(selectElement.options).find(option => option.value === selectedChurch);
 
-        if (matchingOption) {
-          // Set the select element's value to the matching option's value
-          selectElement.value = matchingOption.value;
+        // if (matchingOption) {
+        //   // Set the select element's value to the matching option's value
+        //   selectElement.value = matchingOption.value;
           
-          // const changeEvent = new Event('change', { bubbles: true, cancelable: true });
-          // selectElement.dispatchEvent(changeEvent);
+        //   // const changeEvent = new Event('change', { bubbles: true, cancelable: true });
+        //   // selectElement.dispatchEvent(changeEvent);
 
-          const inputEvent = new Event('input', { bubbles: true });
-          selectElement.dispatchEvent(inputEvent);
-        }
+        //   const inputEvent = new Event('input', { bubbles: true });
+        //   selectElement.dispatchEvent(inputEvent);
+        // }
       });
 
 
-        console.log(`Selected church: ${selectedChurch}`);
+//        console.log(`Selected church: ${selectedChurch}`);
 
 // site-church-selector
 
 
-      });
-    } else {
-      console.error('Select element with ID "church" not found.');
-    }
-
-    // const elements: NodeListOf<Element> = document.querySelectorAll(`.${item.className}`);
-    // console.log("Making elements visible", elements);
-    // gsap.to(elements, { display: 'block' });
-
+//      });
+    // } else {
+    //   console.error('Select element with ID "church" not found.');
+    // }
 
   }
-
-  
-  
-
-
 
 }

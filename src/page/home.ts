@@ -21,7 +21,7 @@ export class HomePage implements IRouteHandler {
 
   exec() {  
 
-    console.log("Home."); 
+//    console.log("Home."); 
 
   }
 
