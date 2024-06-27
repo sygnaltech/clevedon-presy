@@ -1,3 +1,4 @@
+"use strict";
 (() => {
   // src/wfu-cms-select.ts
   var CMS_SELECT = "wfu-cmsselect";

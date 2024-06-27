@@ -1,3 +1,4 @@
+"use strict";
 (() => {
   // node_modules/js-cookie/dist/js.cookie.mjs
   function assign(target) {

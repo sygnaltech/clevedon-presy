@@ -1,3 +1,4 @@
+"use strict";
 (() => {
   // src/util.ts
   function getQueryParam(name) {
