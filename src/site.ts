@@ -3,19 +3,27 @@
  * Site
  */
 
-import gsap from 'gsap'; 
+// import gsap from 'gsap'; 
 import { Sa5CmsSelect } from './wfu-cms-select';
+import { IRouteHandler } from "./engine/routeDispatcher";
+import { loadCSS, loadEngineCSS } from "./engine/core";
  
 
-export class Site {
+export class Site implements IRouteHandler {
 
 //  modelDropdown: WebflowDropdown; 
 
   constructor() {
   }
-  
-  init() {
 
+  setup() {
+
+    loadEngineCSS("site.css"); 
+   
+  }
+
+  exec() {
+    
     console.log("Site."); 
 
     const cmsSelect = new Sa5CmsSelect();
