@@ -1,73 +1,48 @@
 "use strict";
-(() => {
-  // src/wfu-cms-select.ts
-  var CMS_SELECT = "wfu-cmsselect";
-  var CMS_SELECT_DATA = "wfu-cmsselect-data";
-  var CMS_SELECT_TEXT = "wfu-cmsselect-text";
-  var CMS_SELECT_VALUE = "wfu-cmsselect-value";
-  var Sa5CmsSelect = class {
-    constructor() {
-    }
-    initAll() {
-      const cmsSelectElements = document.querySelectorAll(`[${CMS_SELECT}]`);
-      cmsSelectElements.forEach((selectElement) => {
-        const dataIdentifier = selectElement.getAttribute(CMS_SELECT);
-        if (dataIdentifier) {
-          const dataElements = document.querySelectorAll(`[${CMS_SELECT_DATA}="${dataIdentifier}"]`);
-          dataElements.forEach((dataElement) => {
-            const textElements = dataElement.querySelectorAll(`[${CMS_SELECT_TEXT}]`);
-            textElements.forEach((textElement) => {
-              const textValue = textElement.getAttribute(CMS_SELECT_TEXT);
-              const optionValue = textElement.getAttribute(CMS_SELECT_VALUE);
-              if (textValue) {
-                const optionElement = document.createElement("option");
-                optionElement.textContent = textValue;
-                if (optionValue) {
-                  optionElement.value = optionValue;
-                }
-                selectElement.appendChild(optionElement);
-              }
-            });
-          });
-        }
-      });
-    }
-  };
-
-  // src/engine/core.ts
-  function loadCSS(url) {
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = url;
-    document.head.appendChild(link);
-  }
-  function loadEngineCSS(cssFileName) {
-    const currentScript = document.currentScript;
-    if (currentScript) {
-      const scriptURL = new URL(currentScript.src);
-      const origin = scriptURL.origin;
-      const path = scriptURL.pathname.substring(0, scriptURL.pathname.lastIndexOf("/"));
-      const cssURL = `${origin}${path}/css/${cssFileName}`;
-      loadCSS(cssURL);
-    } else {
-      console.error("Unable to determine the currently executing script.");
-    }
-  }
-
-  // src/site.ts
-  var Site = class {
+/*
+ * Site
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Site = void 0;
+// import gsap from 'gsap'; 
+const wfu_cms_select_1 = require("./wfu-cms-select");
+const sse_1 = require("@sygnal/sse");
+class Site {
+    //  modelDropdown: WebflowDropdown; 
     constructor() {
     }
     setup() {
-      loadEngineCSS("site.css");
+        sse_1.Page.loadEngineCSS("site.css");
     }
     exec() {
-      const cmsSelect = new Sa5CmsSelect();
-      cmsSelect.initAll();
-      const churchSelectors = document.querySelectorAll("[site-church-selector]");
-      churchSelectors.forEach((selectElement) => {
-      });
+        //    console.log("Site."); 
+        const cmsSelect = new wfu_cms_select_1.Sa5CmsSelect();
+        cmsSelect.initAll();
+        // const churchSelect = document.getElementById('church') as HTMLSelectElement;
+        // if (churchSelect) {
+        //   churchSelect.addEventListener('change', () => {
+        //     const selectedChurch = churchSelect.value;
+        // Find all elements with the custom attribute `site-church-selector`
+        const churchSelectors = document.querySelectorAll('[site-church-selector]');
+        // Update each found select element to match the selected value
+        churchSelectors.forEach(selectElement => {
+            // Find the option with the matching value
+            // const matchingOption = Array.from(selectElement.options).find(option => option.value === selectedChurch);
+            // if (matchingOption) {
+            //   // Set the select element's value to the matching option's value
+            //   selectElement.value = matchingOption.value;
+            //   // const changeEvent = new Event('change', { bubbles: true, cancelable: true });
+            //   // selectElement.dispatchEvent(changeEvent);
+            //   const inputEvent = new Event('input', { bubbles: true });
+            //   selectElement.dispatchEvent(inputEvent);
+            // }
+        });
+        //        console.log(`Selected church: ${selectedChurch}`);
+        // site-church-selector
+        //      });
+        // } else {
+        //   console.error('Select element with ID "church" not found.');
+        // }
     }
-  };
-})();
-//# sourceMappingURL=site.js.map
+}
+exports.Site = Site;
