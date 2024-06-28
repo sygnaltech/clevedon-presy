@@ -5,8 +5,7 @@
 
 // import gsap from 'gsap'; 
 import { Sa5CmsSelect } from './wfu-cms-select';
-import { IRouteHandler } from "./engine/routeDispatcher";
-import { loadCSS, loadEngineCSS } from "./engine/core";
+import { IRouteHandler, Page } from '@sygnal/sse';
  
 
 export class Site implements IRouteHandler {
@@ -18,7 +17,7 @@ export class Site implements IRouteHandler {
 
   setup() {
 
-    loadEngineCSS("site.css"); 
+    Page.loadEngineCSS("site.css"); 
    
   }
 

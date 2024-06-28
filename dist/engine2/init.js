@@ -1,83 +1,69 @@
+"use strict";
 /*
- * Loader  
+ * Loader
  * Main entry point
- * 
+ *
  */
-
-import Cookies from 'js-cookie';
-import { getCurrentScriptUrl, getQueryParam, loadScript, prependToTitle, replaceCSSLink } from './core';
-
-
-
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const js_cookie_1 = __importDefault(require("js-cookie"));
+const core_1 = require("./core");
 function initEngine() {
-
     console.log("Init engine.");
-
     // Process any engine mode commands 
-    const engineModeCommand = getQueryParam('engine.mode');
-    switch(engineModeCommand) {
+    const engineModeCommand = (0, core_1.getQueryParam)('engine.mode');
+    switch (engineModeCommand) {
         case 'dev':
-            Cookies.set('siteEngineMode', 'dev', { expires: 7 });
+            js_cookie_1.default.set('siteEngineMode', 'dev', { expires: 7 });
             break;
         case 'prod':
-            Cookies.remove('siteEngineMode');
+            js_cookie_1.default.remove('siteEngineMode');
             break;
         default:
             // Do nothing, keep existing engine state 
             break;
     }
-
     // Get current engine mode
-    const engineMode = Cookies.get('siteEngineMode') || "prod";
-
+    const engineMode = js_cookie_1.default.get('siteEngineMode') || "prod";
     /**
      * ENGINE MODE
      */
-
-    switch(engineMode) {
+    switch (engineMode) {
         case 'dev':
-            invokeDebugMode(); 
+            invokeDebugMode();
             break;
         case 'prod':
         default:
-            const scriptUrl = getCurrentScriptUrl();
+            const scriptUrl = (0, core_1.getCurrentScriptUrl)();
             if (scriptUrl) {
-    
                 const engineScriptUrl = scriptUrl.replace('init.js', 'index.js');
-                
-                loadScript(engineScriptUrl);
+                (0, core_1.loadScript)(engineScriptUrl);
                 break;
-            } 
+            }
     }
-
 }
-
 initEngine();
-
-
 function invokeDebugMode() {
-
     // Prepend to the document title
-    prependToTitle("🅳🅴🆅 ➜ ");
-
+    (0, core_1.prependToTitle)("🅳🅴🆅 ➜ ");
     // Handle scripts
-    const scripts = document.querySelectorAll<HTMLScriptElement>('script');
+    const scripts = document.querySelectorAll('script');
     scripts.forEach(script => {
         const devSrc = script.getAttribute('dev-src');
         if (devSrc) {
-            loadScript(devSrc);
+            (0, core_1.loadScript)(devSrc);
         }
     });
-
     // Handle CSS
-    const links = document.querySelectorAll<HTMLLinkElement>('link[rel="stylesheet"]');
+    const links = document.querySelectorAll('link[rel="stylesheet"]');
     links.forEach(link => {
         const devHref = link.getAttribute('dev-src');
         if (devHref) {
-            replaceCSSLink(link, devHref);
+            (0, core_1.replaceCSSLink)(link, devHref);
         }
     });
-
     // // Load additional scripts and CSS based on the mode
     // if (debugMode) {
     //     loadScript('https://cdn.jsdelivr.net/your-library/debug/library.js');
@@ -86,7 +72,5 @@ function invokeDebugMode() {
     //     loadScript('https://cdn.jsdelivr.net/your-library/prod/library.js');
     //     loadCSS('https://cdn.jsdelivr.net/your-library/prod/styles.css');
     // }
-
 }
-
 //});

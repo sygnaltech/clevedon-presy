@@ -2,11 +2,19 @@
     "compilerOptions": {
       "target": "ES6",
       "module": "commonjs",
+      "declaration": true,
+      "outDir": "./dist",
       "strict": true,
       "esModuleInterop": true,
       "skipLibCheck": true,
       "forceConsistentCasingInFileNames": true,
 //      "types": ["jest"]
-    }
+"baseUrl": "./",
+"paths": {
+  "@sygnal/sse": ["node_modules/@sygnal/sse"]
+}
+    },
+    "include": ["src"],
+    "exclude": ["node_modules", "dist"]
 }
   

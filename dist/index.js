@@ -1,150 +1,33 @@
 "use strict";
-(() => {
-  // src/version.ts
-  var VERSION = "0.1.2";
-
-  // src/page/home.ts
-  var HomePage = class {
-    constructor() {
-    }
-    setup() {
-    }
-    exec() {
-    }
-  };
-
-  // src/wfu-cms-select.ts
-  var CMS_SELECT = "wfu-cmsselect";
-  var CMS_SELECT_DATA = "wfu-cmsselect-data";
-  var CMS_SELECT_TEXT = "wfu-cmsselect-text";
-  var CMS_SELECT_VALUE = "wfu-cmsselect-value";
-  var Sa5CmsSelect = class {
-    constructor() {
-    }
-    initAll() {
-      const cmsSelectElements = document.querySelectorAll(`[${CMS_SELECT}]`);
-      cmsSelectElements.forEach((selectElement) => {
-        const dataIdentifier = selectElement.getAttribute(CMS_SELECT);
-        if (dataIdentifier) {
-          const dataElements = document.querySelectorAll(`[${CMS_SELECT_DATA}="${dataIdentifier}"]`);
-          dataElements.forEach((dataElement) => {
-            const textElements = dataElement.querySelectorAll(`[${CMS_SELECT_TEXT}]`);
-            textElements.forEach((textElement) => {
-              const textValue = textElement.getAttribute(CMS_SELECT_TEXT);
-              const optionValue = textElement.getAttribute(CMS_SELECT_VALUE);
-              if (textValue) {
-                const optionElement = document.createElement("option");
-                optionElement.textContent = textValue;
-                if (optionValue) {
-                  optionElement.value = optionValue;
-                }
-                selectElement.appendChild(optionElement);
-              }
-            });
-          });
-        }
-      });
-    }
-  };
-
-  // src/engine/core.ts
-  function loadCSS(url) {
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = url;
-    document.head.appendChild(link);
-  }
-  function loadEngineCSS(cssFileName) {
-    const currentScript = document.currentScript;
-    if (currentScript) {
-      const scriptURL = new URL(currentScript.src);
-      const origin = scriptURL.origin;
-      const path = scriptURL.pathname.substring(0, scriptURL.pathname.lastIndexOf("/"));
-      const cssURL = `${origin}${path}/css/${cssFileName}`;
-      loadCSS(cssURL);
-    } else {
-      console.error("Unable to determine the currently executing script.");
-    }
-  }
-
-  // src/site.ts
-  var Site = class {
-    constructor() {
-    }
-    setup() {
-      loadEngineCSS("site.css");
-    }
-    exec() {
-      const cmsSelect = new Sa5CmsSelect();
-      cmsSelect.initAll();
-      const churchSelectors = document.querySelectorAll("[site-church-selector]");
-      churchSelectors.forEach((selectElement) => {
-      });
-    }
-  };
-
-  // src/engine/routeDispatcher.ts
-  var RouteDispatcher = class {
-    constructor() {
-    }
-    matchRoute(path) {
-      for (const route in this.routes) {
-        if (route.endsWith("*")) {
-          const baseRoute = route.slice(0, -1);
-          if (path.startsWith(baseRoute)) {
-            return this.routes[route];
-          }
-        } else if (route === path) {
-          return this.routes[route];
-        }
-      }
-      return null;
-    }
-    setupRoute() {
-      new Site().setup();
-      const path = window.location.pathname;
-      const HandlerClass = this.matchRoute(path);
-      if (HandlerClass) {
-        const handlerInstance = new HandlerClass();
-        handlerInstance.setup();
-      } else {
-      }
-    }
-    execRoute() {
-      new Site().exec();
-      const path = window.location.pathname;
-      const HandlerClass = this.matchRoute(path);
-      if (HandlerClass) {
-        const handlerInstance = new HandlerClass();
-        handlerInstance.exec();
-      } else {
-      }
-    }
-  };
-
-  // src/routes.ts
-  var routeDispatcher = () => {
-    var routeDispatcher2 = new RouteDispatcher();
-    routeDispatcher2.routes = {
-      "/": HomePage
-    };
-    return routeDispatcher2;
-  };
-
-  // src/index.ts
-  var SITE_NAME = "Site";
-  var setup = () => {
-    console.log(`${SITE_NAME} package init v${VERSION}`);
-    routeDispatcher().setupRoute();
-  };
-  var exec = () => {
-    routeDispatcher().execRoute();
-  };
-  setup();
-  if (document.readyState !== "loading") {
+/*
+ * Index
+ * Main entry point
+ *
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+const version_1 = require("./version");
+const routes_1 = require("./routes");
+// Global vars
+const SITE_NAME = 'Site';
+// Perform setup, sync
+const setup = () => {
+    console.log(`${SITE_NAME} package init v${version_1.VERSION}`);
+    (0, routes_1.routeDispatcher)().setupRoute();
+};
+// Perform exec, async
+// After DOM content loaded 
+const exec = () => {
+    (0, routes_1.routeDispatcher)().execRoute();
+};
+/**
+ * Initialize
+ */
+// Perform setup, sync
+setup();
+// Perform exec, async
+if (document.readyState !== 'loading') {
     exec();
-  } else {
+}
+else {
     document.addEventListener("DOMContentLoaded", exec);
-  }
-})();
-//# sourceMappingURL=index.js.map
+}
