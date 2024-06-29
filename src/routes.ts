@@ -11,8 +11,8 @@
  */
 
 import { HomePage } from "./page/home";
-// import { RouteDispatcher } from "@sygnal/sse";
-import { RouteDispatcher } from "./engine/index";
+import { RouteDispatcher } from "@sygnal/sse";
+// import { RouteDispatcher } from "./engine/index";
 import { Site } from "./site"
 
 export const routeDispatcher = (): RouteDispatcher => {

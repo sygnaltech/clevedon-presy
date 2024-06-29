@@ -1,26 +1,5 @@
 "use strict";
 (() => {
-  var __async = (__this, __arguments, generator) => {
-    return new Promise((resolve, reject) => {
-      var fulfilled = (value) => {
-        try {
-          step(generator.next(value));
-        } catch (e) {
-          reject(e);
-        }
-      };
-      var rejected = (value) => {
-        try {
-          step(generator.throw(value));
-        } catch (e) {
-          reject(e);
-        }
-      };
-      var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
-      step((generator = generator.apply(__this, __arguments)).next());
-    });
-  };
-
   // src/wfu-cms-select.ts
   var CMS_SELECT = "wfu-cmsselect";
   var CMS_SELECT_DATA = "wfu-cmsselect-data";
@@ -55,7 +34,34 @@
     }
   };
 
-  // src/engine/page.ts
+  // ../sse-core/dist/page.js
+  var __awaiter = function(thisArg, _arguments, P, generator) {
+    function adopt(value) {
+      return value instanceof P ? value : new P(function(resolve) {
+        resolve(value);
+      });
+    }
+    return new (P || (P = Promise))(function(resolve, reject) {
+      function fulfilled(value) {
+        try {
+          step(generator.next(value));
+        } catch (e) {
+          reject(e);
+        }
+      }
+      function rejected(value) {
+        try {
+          step(generator["throw"](value));
+        } catch (e) {
+          reject(e);
+        }
+      }
+      function step(result) {
+        result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+      }
+      step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+  };
   var Page = class {
     static getQueryParam(name) {
       const urlParams = new URLSearchParams(window.location.search);
@@ -158,8 +164,8 @@
           throw new Error("Unsupported unit");
       }
     }
-    static getResponseHeader(headerName, url = void 0) {
-      return __async(this, null, function* () {
+    static getResponseHeader(headerName_1) {
+      return __awaiter(this, arguments, void 0, function* (headerName, url = void 0) {
         const headers = yield this.getResponseHeaders(url);
         if (!headers)
           return void 0;
@@ -168,8 +174,8 @@
         return headers.get(headerName) || void 0;
       });
     }
-    static getResponseHeaders(url = void 0) {
-      return __async(this, null, function* () {
+    static getResponseHeaders() {
+      return __awaiter(this, arguments, void 0, function* (url = void 0) {
         try {
           if (!url) {
             url = window.location.href;
@@ -186,7 +192,7 @@
     }
   };
 
-  // node_modules/js-cookie/dist/js.cookie.mjs
+  // ../sse-core/node_modules/js-cookie/dist/js.cookie.mjs
   function assign(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];

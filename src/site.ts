@@ -5,8 +5,8 @@
 
 // import gsap from 'gsap'; 
 import { Sa5CmsSelect } from './wfu-cms-select';
-import { IRouteHandler, Page } from './engine/index'; // '@sygnal/sse';
- 
+// import { IRouteHandler, Page } from './engine/index'; // '@sygnal/sse';
+import { IRouteHandler, Page } from '@sygnal/sse';
 
 export class Site implements IRouteHandler {
 
