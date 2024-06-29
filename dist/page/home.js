@@ -1,18 +1,13 @@
 "use strict";
-/*
- * Page | Home
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.HomePage = void 0;
-class HomePage {
-    //  modelDropdown: WebflowDropdown; 
+(() => {
+  // src/page/home.ts
+  var HomePage = class {
     constructor() {
     }
     setup() {
-        //    loadEngineCSS("site.css"); 
     }
     exec() {
-        //    console.log("Home."); 
     }
-}
-exports.HomePage = HomePage;
+  };
+})();
+//# sourceMappingURL=home.js.map

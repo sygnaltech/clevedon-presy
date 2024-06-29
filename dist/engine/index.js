@@ -21,19 +21,6 @@
     });
   };
 
-  // src/version.ts
-  var VERSION = "0.1.2";
-
-  // src/page/home.ts
-  var HomePage = class {
-    constructor() {
-    }
-    setup() {
-    }
-    exec() {
-    }
-  };
-
   // src/engine/page.ts
   var Page = class {
     static getQueryParam(name) {
@@ -162,6 +149,50 @@
         }
         return void 0;
       });
+    }
+  };
+
+  // src/engine/debug.ts
+  var DEFAULT_APP_NAME = "Site";
+  var Debug = class {
+    constructor(label, appName = DEFAULT_APP_NAME) {
+      this._localStorageDebugFlag = "debug-mode";
+      this._appName = DEFAULT_APP_NAME;
+      this._enabled = false;
+      this._appName = appName;
+      this._label = label;
+    }
+    get persistentDebug() {
+      return Boolean(localStorage.getItem(this._localStorageDebugFlag));
+    }
+    set persistentDebug(active) {
+      if (active) {
+        localStorage.setItem(this._localStorageDebugFlag, "true");
+        console.debug(`${this._appName} debug enabled (persistent).`);
+      } else {
+        localStorage.removeItem(this._localStorageDebugFlag);
+        console.debug(`${this._appName} debug disabled (persistent).`);
+      }
+    }
+    get enabled() {
+      var wfuDebugValue = Boolean(localStorage.getItem(this._localStorageDebugFlag));
+      wfuDebugValue = wfuDebugValue || this._enabled;
+      return wfuDebugValue;
+    }
+    set enabled(active) {
+      this._enabled = active;
+    }
+    group(name) {
+      if (this.enabled)
+        console.group(name);
+    }
+    groupEnd() {
+      if (this.enabled)
+        console.groupEnd();
+    }
+    debug(...args) {
+      if (this.enabled)
+        console.debug(this._label, ...args);
     }
   };
 
@@ -305,87 +336,8 @@
     }
   };
 
-  // src/wfu-cms-select.ts
-  var CMS_SELECT = "wfu-cmsselect";
-  var CMS_SELECT_DATA = "wfu-cmsselect-data";
-  var CMS_SELECT_TEXT = "wfu-cmsselect-text";
-  var CMS_SELECT_VALUE = "wfu-cmsselect-value";
-  var Sa5CmsSelect = class {
-    constructor() {
-    }
-    initAll() {
-      const cmsSelectElements = document.querySelectorAll(`[${CMS_SELECT}]`);
-      cmsSelectElements.forEach((selectElement) => {
-        const dataIdentifier = selectElement.getAttribute(CMS_SELECT);
-        if (dataIdentifier) {
-          const dataElements = document.querySelectorAll(`[${CMS_SELECT_DATA}="${dataIdentifier}"]`);
-          dataElements.forEach((dataElement) => {
-            const textElements = dataElement.querySelectorAll(`[${CMS_SELECT_TEXT}]`);
-            textElements.forEach((textElement) => {
-              const textValue = textElement.getAttribute(CMS_SELECT_TEXT);
-              const optionValue = textElement.getAttribute(CMS_SELECT_VALUE);
-              if (textValue) {
-                const optionElement = document.createElement("option");
-                optionElement.textContent = textValue;
-                if (optionValue) {
-                  optionElement.value = optionValue;
-                }
-                selectElement.appendChild(optionElement);
-              }
-            });
-          });
-        }
-      });
-    }
-  };
-
-  // src/site.ts
-  var Site = class {
-    constructor() {
-    }
-    setup() {
-      console.log("loading site.css");
-      Page.loadEngineCSS("site.css");
-    }
-    exec() {
-      console.log("exec site");
-      const cmsSelect = new Sa5CmsSelect();
-      cmsSelect.initAll();
-      const churchSelectors = document.querySelectorAll("[site-church-selector]");
-      churchSelectors.forEach((selectElement) => {
-      });
-    }
-  };
-
-  // src/routes.ts
-  var routeDispatcher = () => {
-    var routeDispatcher2 = new RouteDispatcher(Site);
-    routeDispatcher2.routes = {
-      "/": HomePage
-    };
-    return routeDispatcher2;
-  };
-
-  // src/index.ts
-  var SITE_NAME = "Site";
-  if (!window.SSE) {
-    window.SSE = {};
-  }
-  var setup = () => {
-    console.log(`${SITE_NAME} package init v${VERSION}`);
-    console.log("script @ setup", Page.getCurrentScriptBaseUrl());
-    window.SSE.baseUrl = Page.getCurrentScriptBaseUrl();
-    routeDispatcher().setupRoute();
-  };
-  var exec = () => {
-    console.log("script @ exec1", window.SSE.baseUrl);
-    routeDispatcher().execRoute();
-  };
-  setup();
-  if (document.readyState !== "loading") {
-    exec();
-  } else {
-    document.addEventListener("DOMContentLoaded", exec);
+  // src/engine/index.ts
+  function initSSE() {
   }
 })();
 /*! js-cookie v3.0.5 | MIT */
