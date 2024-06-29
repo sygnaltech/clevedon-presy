@@ -338,6 +338,10 @@
 
   // src/engine/index.ts
   function initSSE() {
+    if (!window.SSE) {
+      window.SSE = {};
+    }
+    window.SSE.baseUrl = Page.getCurrentScriptBaseUrl();
   }
 })();
 /*! js-cookie v3.0.5 | MIT */

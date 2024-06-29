@@ -6,18 +6,9 @@
 
 import { VERSION } from "./version";
 import { routeDispatcher } from "./routes";
-import { Page } from "./engine/index"; 
+import { initSSE } from "@sygnal/sse"; 
 
-interface SiteDataType {
-    // Define properties and their types for SiteDataType
-    // For example:
-    // someProperty?: string;
-    // anotherProperty?: number;
-    // Add other properties as needed
-} 
-
-interface SSEType {
-    baseUrl?: string;  
+interface SiteGlobalDataType {
     // Define properties and their types for SiteDataType
     // For example:
     // someProperty?: string;
@@ -37,30 +28,23 @@ const SITE_NAME = 'Site';
 declare global {
     interface Window {
 
-    // Extend the Window interface to include fsAttributes
-    fsAttributes: [string, (filterInstances: any[]) => void][];
-    Site: SiteDataType;
-    SSE: SSEType;
-    //   modelsDataSourceElems: NodeListOf<HTMLElement>;
-    //   modelsSelectElem: HTMLElement | null;
-    //   modelsNavElem: HTMLElement | null;
+        // fsAttributes
+        fsAttributes: [string, (filterInstances: any[]) => void][];
+
+        // Site global data
+        Site: SiteGlobalDataType;
+
     }
 }
 
-// Ensure global SSE object is initialized
-if (!window.SSE) {
-    window.SSE = {};
-}
+// Init SSE Engine
+initSSE();
 
 // Perform setup, sync
 const setup = () => {
     
     console.log(`${SITE_NAME} package init v${VERSION}`);
     
-console.log("script @ setup", Page.getCurrentScriptBaseUrl());
-
-window.SSE.baseUrl = Page.getCurrentScriptBaseUrl(); 
-
     routeDispatcher().setupRoute(); 
 
 }
@@ -69,7 +53,6 @@ window.SSE.baseUrl = Page.getCurrentScriptBaseUrl();
 // After DOM content loaded 
 const exec = () => {
 
-    console.log("script @ exec1", window.SSE.baseUrl);
     routeDispatcher().execRoute(); 
 
 }
