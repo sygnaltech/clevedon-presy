@@ -10,7 +10,7 @@
     }
   };
 
-  // ../sse-core/dist/page.js
+  // node_modules/@sygnal/sse/dist/page.js
   var __awaiter = function(thisArg, _arguments, P, generator) {
     function adopt(value) {
       return value instanceof P ? value : new P(function(resolve) {
@@ -168,7 +168,7 @@
     }
   };
 
-  // ../sse-core/node_modules/js-cookie/dist/js.cookie.mjs
+  // node_modules/js-cookie/dist/js.cookie.mjs
   function assign(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
@@ -266,7 +266,7 @@
   }
   var api = init(defaultConverter, { path: "/" });
 
-  // ../sse-core/dist/routeDispatcher.js
+  // node_modules/@sygnal/sse/dist/routeDispatcher.js
   var RouteDispatcher = class {
     constructor(SiteClass) {
       this._SiteClass = SiteClass;
