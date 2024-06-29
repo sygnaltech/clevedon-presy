@@ -5,7 +5,7 @@
 
 // import gsap from 'gsap'; 
 import { Sa5CmsSelect } from './wfu-cms-select';
-import { IRouteHandler, Page } from '@sygnal/sse';
+import { IRouteHandler, Page } from './engine/index'; // '@sygnal/sse';
  
 
 export class Site implements IRouteHandler {
@@ -17,6 +17,7 @@ export class Site implements IRouteHandler {
 
   setup() {
 
+    console.log("loading site.css")
     Page.loadEngineCSS("site.css"); 
    
   }
@@ -24,6 +25,7 @@ export class Site implements IRouteHandler {
   exec() {
 
 //    console.log("Site."); 
+console.log("exec site")
 
     const cmsSelect = new Sa5CmsSelect();
     cmsSelect.initAll(); 
