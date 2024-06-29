@@ -3,7 +3,6 @@
  * Page | Home
  */
 
-//import { IRouteHandler, Page } from "../engine/index";
  import { IRouteHandler, Page } from "@sygnal/sse";
 
 export class HomePage implements IRouteHandler {

@@ -295,11 +295,9 @@
     constructor() {
     }
     setup() {
-      console.log("loading site.css");
       Page.loadEngineCSS("site.css");
     }
     exec() {
-      console.log("exec site");
       const cmsSelect = new Sa5CmsSelect();
       cmsSelect.initAll();
       const churchSelectors = document.querySelectorAll("[site-church-selector]");

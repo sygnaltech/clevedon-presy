@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["../../src/page/home.ts"],
-  "sourcesContent": ["\r\n/*\r\n * Page | Home\r\n */\r\n\r\n//import { IRouteHandler, Page } from \"../engine/index\";\r\n import { IRouteHandler, Page } from \"@sygnal/sse\";\r\n\r\nexport class HomePage implements IRouteHandler {\r\n\r\n//  modelDropdown: WebflowDropdown; \r\n\r\n  constructor() {\r\n  }\r\n  setup() {\r\n\r\n//    loadEngineCSS(\"site.css\"); \r\n   \r\n  }\r\n\r\n  exec() {  \r\n\r\n//    console.log(\"Home.\"); \r\n\r\n  }\r\n\r\n}\r\n"],
-  "mappings": ";;;AAQO,MAAM,WAAN,MAAwC;AAAA,IAI7C,cAAc;AAAA,IACd;AAAA,IACA,QAAQ;AAAA,IAIR;AAAA,IAEA,OAAO;AAAA,IAIP;AAAA,EAEF;",
+  "sourcesContent": ["\r\n/*\r\n * Page | Home\r\n */\r\n\r\n import { IRouteHandler, Page } from \"@sygnal/sse\";\r\n\r\nexport class HomePage implements IRouteHandler {\r\n\r\n//  modelDropdown: WebflowDropdown; \r\n\r\n  constructor() {\r\n  }\r\n  setup() {\r\n\r\n//    loadEngineCSS(\"site.css\"); \r\n   \r\n  }\r\n\r\n  exec() {  \r\n\r\n//    console.log(\"Home.\"); \r\n\r\n  }\r\n\r\n}\r\n"],
+  "mappings": ";;;AAOO,MAAM,WAAN,MAAwC;AAAA,IAI7C,cAAc;AAAA,IACd;AAAA,IACA,QAAQ;AAAA,IAIR;AAAA,IAEA,OAAO;AAAA,IAIP;AAAA,EAEF;",
   "names": []
 }

@@ -6,7 +6,6 @@
 
 import { VERSION } from "./version";
 import { routeDispatcher } from "./routes";
-//import { initSSE } from "./engine/index"; 
 import { initSSE } from "@sygnal/sse"; 
 
 interface SiteGlobalDataType {
