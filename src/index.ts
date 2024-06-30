@@ -8,6 +8,7 @@ import { VERSION } from "./version";
 import { routeDispatcher } from "./routes";
 import { initSSE } from "@sygnal/sse"; 
 
+
 interface SiteGlobalDataType {
     // Define properties and their types for SiteDataType
     // For example:
@@ -38,7 +39,7 @@ declare global {
 }
 
 // Init SSE Engine
-initSSE();
+initSSE(); 
 
 // Perform setup, sync
 const setup = () => {

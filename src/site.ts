@@ -5,11 +5,10 @@
 
 // import gsap from 'gsap'; 
 import { Sa5CmsSelect } from './wfu-cms-select';
-import { IRouteHandler, Page } from '@sygnal/sse';
+import { IModule, Page } from '@sygnal/sse';
+ 
 
-export class Site implements IRouteHandler {
-
-//  modelDropdown: WebflowDropdown; 
+export class Site implements IModule {
 
   constructor() {
   }
@@ -22,8 +21,8 @@ export class Site implements IRouteHandler {
 
   exec() {
 
-    const cmsSelect = new Sa5CmsSelect();
-    cmsSelect.initAll(); 
+      const cmsSelect = new Sa5CmsSelect();
+      cmsSelect.initAll(); 
 
     // const churchSelect = document.getElementById('church') as HTMLSelectElement;
   

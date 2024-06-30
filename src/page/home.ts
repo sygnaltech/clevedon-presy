@@ -3,23 +3,19 @@
  * Page | Home
  */
 
- import { IRouteHandler, Page } from "@sygnal/sse";
+import { IModule } from "@sygnal/sse";
+ 
 
-export class HomePage implements IRouteHandler {
-
-//  modelDropdown: WebflowDropdown; 
+export class HomePage implements IModule {
 
   constructor() {
   }
-  setup() {
 
-//    loadEngineCSS("site.css"); 
+  setup() {
    
   }
 
   exec() {  
-
-//    console.log("Home."); 
 
   }
 

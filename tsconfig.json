@@ -9,10 +9,10 @@
       "skipLibCheck": true,
       "forceConsistentCasingInFileNames": true,
 //      "types": ["jest"]
-"baseUrl": "./",
-"paths": {
-  "@sygnal/sse": ["node_modules/@sygnal/sse"]
-}
+      "baseUrl": "./",
+// "paths": {
+//   "@sygnal/sse": ["node_modules/@sygnal/sse"]
+// }
     },
     "include": ["src"],
     "exclude": ["node_modules", "dist"]

@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["../../src/page/home.ts"],
-  "sourcesContent": ["\r\n/*\r\n * Page | Home\r\n */\r\n\r\n import { IRouteHandler, Page } from \"@sygnal/sse\";\r\n\r\nexport class HomePage implements IRouteHandler {\r\n\r\n//  modelDropdown: WebflowDropdown; \r\n\r\n  constructor() {\r\n  }\r\n  setup() {\r\n\r\n//    loadEngineCSS(\"site.css\"); \r\n   \r\n  }\r\n\r\n  exec() {  \r\n\r\n//    console.log(\"Home.\"); \r\n\r\n  }\r\n\r\n}\r\n"],
-  "mappings": ";;;AAOO,MAAM,WAAN,MAAwC;AAAA,IAI7C,cAAc;AAAA,IACd;AAAA,IACA,QAAQ;AAAA,IAIR;AAAA,IAEA,OAAO;AAAA,IAIP;AAAA,EAEF;",
+  "sourcesContent": ["\n/*\n * Page | Home\n */\n\nimport { IModule } from \"@sygnal/sse\";\n \n\nexport class HomePage implements IModule {\n\n  constructor() {\n  }\n\n  setup() {\n   \n  }\n\n  exec() {  \n\n  }\n\n}\n"],
+  "mappings": ";;;AAQO,MAAM,WAAN,MAAkC;AAAA,IAEvC,cAAc;AAAA,IACd;AAAA,IAEA,QAAQ;AAAA,IAER;AAAA,IAEA,OAAO;AAAA,IAEP;AAAA,EAEF;",
   "names": []
 }
